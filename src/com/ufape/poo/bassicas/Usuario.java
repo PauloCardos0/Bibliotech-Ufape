@@ -45,7 +45,7 @@ public class Usuario {
 		return status == StatusUsuario.ATIVO && emprestimosAtivos < limiteEmprestimo;
 	}
 
-	public void registrarEmprestimo() throws UsuarioBloqueadoException, LimiteEmprestimoExcedidoException {
+	public void registrarEmprestimo() throws UsuarioBloqueadoException, LimiteEmprestimoExcedidoException, MultaPendenteException {
 
 		if (status == StatusUsuario.BLOQUEADO) {
 			throw new UsuarioBloqueadoException("Usuário está bloqueado");
