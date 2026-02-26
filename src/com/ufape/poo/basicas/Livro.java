@@ -7,10 +7,11 @@ public class Livro extends ItemAcervo{
 	private String autor;
 	private String editora;
 	private int numeroPaginas;
+	private int id;
 	
 	
 	
-	public Livro(String titulo, int anoPublicacao, String isbn, String autor, String editora, int numeroPaginas) {
+	public Livro(int id, String titulo, int anoPublicacao, String isbn, String autor, String editora, int numeroPaginas) {
 		super(titulo, anoPublicacao);
 		
 		if (autor == null || autor.isBlank()) {

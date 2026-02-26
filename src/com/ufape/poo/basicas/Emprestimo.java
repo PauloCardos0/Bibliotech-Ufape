@@ -68,4 +68,8 @@ public class Emprestimo {
     public boolean isAtivo() {
         return ativo;
     }
+    
+    public int getId() {
+        return id;
+    }
 }

@@ -7,8 +7,9 @@ public class Tese extends ItemAcervo {
 	private String instituicao;
 	private String areaPesquisa;
 	private int anoDefesa;
+	private int id;
 
-	public Tese(String titulo, int anoPublicacao, String autor, String orientador, String instituicao,
+	public Tese(int id,String titulo, int anoPublicacao, String autor, String orientador, String instituicao,
 			String areaPesquisa, int anoDefesa) {
 		super(titulo, anoPublicacao);
 

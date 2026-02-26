@@ -6,8 +6,9 @@ public class ArtigoCientifico extends ItemAcervo {
 	private String autor;
 	private String nomeRevista;
 	private String areapesquisa;
+	private int id;
 
-	public ArtigoCientifico(String titulo, int anoPublicacao, String doi, String autor, String nomeRevista,
+	public ArtigoCientifico(int id, String titulo, int anoPublicacao, String doi, String autor, String nomeRevista,
 			String areaPesquisa) {
 
 		super(titulo, anoPublicacao);
