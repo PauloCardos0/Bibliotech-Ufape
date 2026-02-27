@@ -1,5 +1,7 @@
 package com.ufape.poo.ui;
 
+import com.ufape.poo.basicas.Multa;
+
 import java.util.Scanner;
 import com.ufape.poo.negocio.BibliotecaFacade;
 import com.ufape.poo.basicas.ItemAcervo;
@@ -25,6 +27,10 @@ public class BibliotechUI {
 			System.out.println("2. Listar Utilizadores");
 			System.out.println("3. Cadastrar Livro");
 			System.out.println("4. Listar Acervo");
+			System.out.println("5. Realizar Empréstimo");
+			System.out.println("6. Registrar Devolução");
+			System.out.println("7. Consultar Multas");
+			System.out.println("8. Pagar Multa");
 			System.out.println("0. Sair");
 			System.out.print("Escolha uma opção: ");
 
@@ -90,6 +96,49 @@ public class BibliotechUI {
 								"ID/Status: " + item.getStatus() + " | Classe: " + item.getClass().getSimpleName());
 					}
 					break;
+					
+				case 5:
+				    System.out.print("ID do Utilizador: ");
+				    int idUsuario = scanner.nextInt();
+				    System.out.print("ID do Item (Acervo): ");
+				    int idItem = scanner.nextInt();
+				    System.out.print("Prazo (em dias): ");
+				    int dias = scanner.nextInt();
+				    
+				    fachada.realizarEmprestimo(idUsuario, idItem, dias);
+				    System.out.println("Empréstimo realizado com sucesso!");
+				    break;
+
+				case 6:
+				    System.out.print("ID do Empréstimo para devolução: ");
+				    int idEmp = scanner.nextInt();
+				    fachada.registrarDevolucao(idEmp);
+				    System.out.println("Devolução registada. Verifique se foram geradas multas.");
+				    break;
+
+				case 7:
+				    System.out.print("ID do Utilizador: ");
+				    int idUserMulta = scanner.nextInt();
+				    System.out.println("--- Multas do Utilizador ---");
+				    for (Multa m : fachada.consultarMultasUsuario(idUserMulta)) {
+				        System.out.println("ID Multa: " + m.getId() + " | Valor: R$ " + m.getValor() + " | Paga: " + (m.isPaga() ? "Sim" : "Não"));
+				    }
+				    break;
+
+				case 8:
+					System.out.print("ID da Multa a pagar: ");
+				    int idMulta = scanner.nextInt();
+				    
+				  
+				    try { 
+				        fachada.abrirCaixa(); 
+				    } catch (Exception e) { 
+				      
+				    }
+				    
+				    fachada.pagarMulta(idMulta);
+				    System.out.println("Multa paga com sucesso e valor contabilizado no caixa!");
+				    break;
 
 				case 0:
 					System.out.println("A encerrar o sistema...");

@@ -16,19 +16,20 @@ public class BibliotecaFacade {
 	private CaixaService caixaService;
 
 	public BibliotecaFacade() throws Exception {
-		
-		IRepositorioUsuarios repoUsuarios = new RepositorioUsuariosSerializado();
+	    IRepositorioUsuarios repoUsuarios = new RepositorioUsuariosSerializado(); 
 	    this.usuarioService = new UsuarioService(repoUsuarios);
 
-	
 	    IRepositorioAcervo repoAcervo = new RepositorioAcervoSerializado();
 	    this.acervoService = new AcervoService(repoAcervo);
 
-	    this.multaService = new MultaService(2.0);
+	    IRepositorioMultas repoMultas = new RepositorioMultasSerializado();
+	    this.multaService = new MultaService(2.0, repoMultas);
+
+	    IRepositorioEmprestimos repoEmprestimos = new RepositorioEmprestimosSerializado();
+	    this.emprestimoService = new EmprestimoService(usuarioService, acervoService, repoEmprestimos);
+
 	    this.caixaService = new CaixaService();
-	    this.emprestimoService = new EmprestimoService(usuarioService, acervoService);
 	}
-	
 	public void cadastrarAluno(int id, String nome, String email, String telefone, int limiteEmprestimo,
 			String matricula, String curso, int periodo) throws Exception {
 
