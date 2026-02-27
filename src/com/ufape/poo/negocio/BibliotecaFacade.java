@@ -16,20 +16,19 @@ public class BibliotecaFacade {
 	private CaixaService caixaService;
 
 	public BibliotecaFacade() throws Exception {
+		
+		IRepositorioUsuarios repoUsuarios = new RepositorioUsuariosSerializado();
+	    this.usuarioService = new UsuarioService(repoUsuarios);
 
-		IRepositorioUsuarios repoUsuarios =
-		        new RepositorioUsuariosCSV();
+	
+	    IRepositorioAcervo repoAcervo = new RepositorioAcervoSerializado();
+	    this.acervoService = new AcervoService(repoAcervo);
 
-	    this.usuarioService =
-	            new UsuarioService(repoUsuarios);
-
-	    this.acervoService = new AcervoService();
 	    this.multaService = new MultaService(2.0);
 	    this.caixaService = new CaixaService();
-	    this.emprestimoService =
-	            new EmprestimoService(usuarioService, acervoService);
+	    this.emprestimoService = new EmprestimoService(usuarioService, acervoService);
 	}
-
+	
 	public void cadastrarAluno(int id, String nome, String email, String telefone, int limiteEmprestimo,
 			String matricula, String curso, int periodo) throws Exception {
 
@@ -58,19 +57,19 @@ public class BibliotecaFacade {
 	}
 
 	public void cadastrarLivro(int id, String titulo, int anoPublicacao, String autor, String isbn, String editor,
-			int numeroPaginas) throws ItemJaExisteException {
+			int numeroPaginas) throws Exception {
 
 		acervoService.cadastrarLivro(id, titulo, anoPublicacao, autor, isbn, editor, numeroPaginas);
 	}
 
 	public void cadastrarArtigo(int id, String titulo, int anoPublicacao, String doi, String autor, String nomeRevista,
-			String areaPesquisa) throws ItemJaExisteException {
+			String areaPesquisa) throws Exception {
 
 		acervoService.cadastrarArtigo(id, titulo, anoPublicacao, doi, autor, nomeRevista, areaPesquisa);
 	}
 
 	public void cadastrarTese(int id, String titulo, int anoPublicacao, String autor, String orientador,
-			String instituicao, String areaPesquisa, int anoDefesa) throws ItemJaExisteException {
+			String instituicao, String areaPesquisa, int anoDefesa) throws Exception {
 
 		acervoService.cadastrarTese(id, titulo, anoPublicacao, autor, orientador, instituicao, areaPesquisa, anoDefesa);
 	}
