@@ -7,8 +7,9 @@ public class MovimentacaoCaixa {
 	private String descricao;
 	private double valor;
 	private LocalDateTime data;
+	private TipoMovimentacao tipo;
 
-	public MovimentacaoCaixa(String descricao, double valor) {
+	public MovimentacaoCaixa(String descricao, double valor, TipoMovimentacao tipo) {
 
 		if (descricao == null || descricao.isBlank()) {
 			throw new IllegalArgumentException("Descrição inválida");
@@ -21,6 +22,7 @@ public class MovimentacaoCaixa {
 		this.descricao = descricao;
 		this.valor = valor;
 		this.data = LocalDateTime.now();
+		this.tipo = tipo;
 	}
 
 	public double getValor() {

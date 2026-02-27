@@ -1,16 +1,28 @@
 package com.ufape.poo.basicas;
 
 import java.util.ArrayList;
+
 import java.util.List;
+
+
 
 public class Caixa {
 
 	private boolean aberto;
 	private List<MovimentacaoCaixa> movimentacoes;
+	private double saldo;
 
 	public Caixa() {
 		this.aberto = false;
 		this.movimentacoes = new ArrayList<>();
+	}
+	
+	public double getSaldo() {
+	    return saldo;
+	}
+	
+	public void adicionarValor(double valor) {
+	    this.saldo += valor;
 	}
 
 	public void abrirCaixa() {

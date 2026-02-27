@@ -18,6 +18,11 @@ public class EmprestimoService {
 		this.acervoService = acervoService;
 		this.contadorId = 1;
 	}
+	
+	public EmprestimoService() {
+	    this.emprestimos = new HashMap<>();
+	    this.contadorId = 1;
+	}
 
 	public Emprestimo realizarEmprestimo(int usuarioId, int itemId, int diasPrazo) throws Exception {
 

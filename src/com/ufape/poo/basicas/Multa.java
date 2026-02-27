@@ -38,4 +38,12 @@ public class Multa {
 	public double getValor() {
 		return valor;
 	}
+	
+	public int getId() {
+	    return id;
+	}
+
+	public Emprestimo getEmprestimo() {
+	    return emprestimo;
+	}
 }
