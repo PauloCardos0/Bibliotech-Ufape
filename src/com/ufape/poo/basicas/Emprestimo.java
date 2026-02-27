@@ -1,8 +1,9 @@
 package com.ufape.poo.basicas;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Emprestimo {
+public class Emprestimo implements Serializable{
 
     private int id;
     private Usuario usuario;

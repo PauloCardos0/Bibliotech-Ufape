@@ -1,6 +1,8 @@
 package com.ufape.poo.basicas;
 
-public abstract class ItemAcervo {
+import java.io.Serializable;
+
+public abstract class ItemAcervo implements Serializable {
 
     private String titulo;
     private int anoPublicacao;

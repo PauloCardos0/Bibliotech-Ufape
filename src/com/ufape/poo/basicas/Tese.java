@@ -1,6 +1,8 @@
 package com.ufape.poo.basicas;
 
-public class Tese extends ItemAcervo {
+import java.io.Serializable;
+
+public class Tese extends ItemAcervo implements Serializable{
 
 	private String autor;
 	private String orientador;

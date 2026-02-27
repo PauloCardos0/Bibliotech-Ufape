@@ -1,6 +1,8 @@
 package com.ufape.poo.basicas;
 
-public class Multa {
+import java.io.Serializable;
+
+public class Multa implements Serializable{
 
 	private int id;
 	private Emprestimo emprestimo;

@@ -1,12 +1,13 @@
 package com.ufape.poo.basicas;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import java.util.List;
 
 
 
-public class Caixa {
+public class Caixa implements Serializable{
 
 	private boolean aberto;
 	private List<MovimentacaoCaixa> movimentacoes;

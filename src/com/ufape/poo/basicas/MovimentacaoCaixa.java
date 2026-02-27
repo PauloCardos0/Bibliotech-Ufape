@@ -1,8 +1,9 @@
 package com.ufape.poo.basicas;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class MovimentacaoCaixa {
+public class MovimentacaoCaixa implements Serializable{
 
 	private String descricao;
 	private double valor;

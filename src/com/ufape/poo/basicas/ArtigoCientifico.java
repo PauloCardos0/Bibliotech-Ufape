@@ -1,6 +1,8 @@
 package com.ufape.poo.basicas;
 
-public class ArtigoCientifico extends ItemAcervo {
+import java.io.Serializable;
+
+public class ArtigoCientifico extends ItemAcervo implements Serializable {
 
 	private String doi;
 	private String autor;

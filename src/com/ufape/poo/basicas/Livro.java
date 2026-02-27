@@ -1,6 +1,8 @@
 package com.ufape.poo.basicas;
 
-public class Livro extends ItemAcervo{
+import java.io.Serializable;
+
+public class Livro extends ItemAcervo implements Serializable{
 
 	
 	private String isbn;
@@ -29,6 +31,7 @@ public class Livro extends ItemAcervo{
         if (numeroPaginas <= 0) {
             throw new IllegalArgumentException("Número de páginas inválido");
         }
+        this.id = id;
 
         this.autor = autor;
         this.isbn = isbn;
