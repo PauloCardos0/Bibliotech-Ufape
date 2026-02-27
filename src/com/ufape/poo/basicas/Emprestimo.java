@@ -77,4 +77,7 @@ public class Emprestimo implements Serializable{
     public Usuario getUsuario() {
         return usuario;
     }
+    public java.time.LocalDate getDataEmprestimo() {
+        return dataEmprestimo;
+    }
 }

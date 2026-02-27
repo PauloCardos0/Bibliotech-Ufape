@@ -82,4 +82,21 @@ public class EmprestimoService {
 	public List<Emprestimo> listarTodosEmprestimos() {
 		return new ArrayList<>(emprestimos.values());
 	}
+	
+	public Usuario obterLeitorDoAno(int ano) {
+        Map<Usuario, Integer> contagemLeituras = new HashMap<>();
+
+        for (Emprestimo e : emprestimos.values()) {
+         
+            if (e.getDataEmprestimo().getYear() == ano) {
+                Usuario u = e.getUsuario();
+                contagemLeituras.put(u, contagemLeituras.getOrDefault(u, 0) + 1);
+            }
+        }
+     
+        return contagemLeituras.entrySet().stream()
+                .max(Map.Entry.comparingByValue())
+                .map(Map.Entry::getKey)
+                .orElse(null); 
+    }
 }

@@ -21,6 +21,18 @@ public class MultaService {
       
         this.contadorId = multas.isEmpty() ? 1 : Collections.max(multas.keySet()) + 1; 
     }
+    
+    public List<Multa> listarTodasMultasPendentes() {
+        List<Multa> todasPendentes = new ArrayList<>();
+
+        for (Multa multa : multas.values()) {
+            if (!multa.isPaga()) {
+                todasPendentes.add(multa);
+            }
+        }
+
+        return todasPendentes;
+    }
 
     public Multa gerarMulta(Emprestimo emprestimo) throws Exception {
         if (!emprestimo.estaAtrasado()) {

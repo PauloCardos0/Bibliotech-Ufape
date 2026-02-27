@@ -72,4 +72,12 @@ public class AcervoService {
         itens.remove(id);
         repositorio.salvar(itens); 
     }
+    
+    public List<ItemAcervo> listarItensMaisEmprestados() {
+        List<ItemAcervo> ranking = new ArrayList<>(itens.values());
+        
+        ranking.sort((i1, i2) -> Integer.compare(i2.getTotalEmprestimos(), i1.getTotalEmprestimos()));
+        
+        return ranking;
+    }
 }

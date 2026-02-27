@@ -101,6 +101,13 @@ public class BibliotecaFacade {
 			System.out.println("Multa gerada: R$ " + multa.getValor());
 		}
 	}
+	public List<ItemAcervo> listarItensMaisEmprestados() {
+		return acervoService.listarItensMaisEmprestados();
+	}
+	
+	public Usuario obterLeitorDoAno(int ano) {
+		return emprestimoService.obterLeitorDoAno(ano);
+	}
 
 	public List<Emprestimo> listarItensEmPosse() {
 		return emprestimoService.listarEmprestimosAtivos();
@@ -117,6 +124,10 @@ public class BibliotecaFacade {
 		usuarioService.buscarUsuarioPorId(usuarioId);
 
 		return multaService.listarMultasPorUsuario(usuarioId);
+	}
+	
+	public List<Multa> listarTodasMultasPendentes() {
+		return multaService.listarTodasMultasPendentes();
 	}
 
 	public void pagarMulta(int multaId) throws Exception {
