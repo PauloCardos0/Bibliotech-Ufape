@@ -33,6 +33,23 @@ public class MultaService {
 
         return multa;
     }
+    
+    public List<Multa> listarMultasPorUsuario(int usuarioId) {
+
+        List<Multa> lista = new ArrayList<>();
+
+        for (Multa multa : multas.values()) {
+
+            if (multa.getEmprestimo()
+                     .getUsuario()
+                     .getId() == usuarioId) {
+
+                lista.add(multa);
+            }
+        }
+
+        return lista;
+    }
 
 
     public Multa buscarMultaPorId(int id)

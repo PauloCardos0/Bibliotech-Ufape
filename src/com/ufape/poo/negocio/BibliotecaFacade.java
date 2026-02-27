@@ -1,8 +1,11 @@
 package com.ufape.poo.negocio;
+import com.ufape.poo.dados.*;
 
 import java.util.List;
 
 import com.ufape.poo.basicas.*;
+import com.ufape.poo.dados.IRepositorioUsuarios;
+import com.ufape.poo.dados.RepositorioUsuariosSerializado;
 
 public class BibliotecaFacade {
 
@@ -12,30 +15,35 @@ public class BibliotecaFacade {
 	private MultaService multaService;
 	private CaixaService caixaService;
 
-	public BibliotecaFacade() {
+	public BibliotecaFacade() throws Exception {
 
-		this.usuarioService = new UsuarioService();
-		this.acervoService = new AcervoService();
-		this.multaService = new MultaService(2.0);
-		this.caixaService = new CaixaService();
+		IRepositorioUsuarios repoUsuarios =
+		        new RepositorioUsuariosCSV();
 
-		this.emprestimoService = new EmprestimoService(usuarioService, acervoService);
+	    this.usuarioService =
+	            new UsuarioService(repoUsuarios);
+
+	    this.acervoService = new AcervoService();
+	    this.multaService = new MultaService(2.0);
+	    this.caixaService = new CaixaService();
+	    this.emprestimoService =
+	            new EmprestimoService(usuarioService, acervoService);
 	}
 
 	public void cadastrarAluno(int id, String nome, String email, String telefone, int limiteEmprestimo,
-			String matricula, String curso, int periodo) throws UsuarioJaExisteException {
+			String matricula, String curso, int periodo) throws Exception {
 
 		usuarioService.cadastrarAluno(id, nome, email, telefone, limiteEmprestimo, matricula, curso, periodo);
 	}
 
 	public void cadastrarProfessor(int id, String nome, String email, String telefone, int limiteEmprestimo,
-			String siape, String departamento) throws UsuarioJaExisteException {
+			String siape, String departamento) throws Exception {
 
 		usuarioService.cadastrarProfessor(id, nome, email, telefone, limiteEmprestimo, siape, departamento);
 	}
 
 	public void cadastrarBibliotecario(int id, String nome, String email, String telefone, int limiteEmprestimo,
-			String matriculaFuncional, String setor) throws UsuarioJaExisteException {
+			String matriculaFuncional, String setor) throws Exception {
 
 		usuarioService.cadastrarBibliotecario(id, nome, email, telefone, limiteEmprestimo, matriculaFuncional, setor);
 	}
@@ -92,6 +100,23 @@ public class BibliotecaFacade {
 		if (multa != null) {
 			System.out.println("Multa gerada: R$ " + multa.getValor());
 		}
+	}
+
+	public List<Emprestimo> listarItensEmPosse() {
+		return emprestimoService.listarEmprestimosAtivos();
+	}
+
+	public List<Emprestimo> consultarHistoricoEmprestimosUsuario(int usuarioId) throws UsuarioNaoEncontradoException {
+
+		usuarioService.buscarUsuarioPorId(usuarioId);
+		return emprestimoService.listarEmprestimosPorUsuario(usuarioId);
+	}
+
+	public List<Multa> consultarMultasUsuario(int usuarioId) throws UsuarioNaoEncontradoException {
+
+		usuarioService.buscarUsuarioPorId(usuarioId);
+
+		return multaService.listarMultasPorUsuario(usuarioId);
 	}
 
 	public void pagarMulta(int multaId) throws Exception {

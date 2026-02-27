@@ -1,6 +1,8 @@
 package com.ufape.poo.basicas;
 
-public class Professor extends Usuario {
+import java.io.Serializable;
+
+public class Professor extends Usuario implements Serializable{
 
 	private String siape;
 	private String departamento;

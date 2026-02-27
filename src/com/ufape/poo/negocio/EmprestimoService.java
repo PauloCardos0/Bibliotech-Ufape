@@ -23,6 +23,19 @@ public class EmprestimoService {
 	    this.emprestimos = new HashMap<>();
 	    this.contadorId = 1;
 	}
+	
+	public List<Emprestimo> listarEmprestimosPorUsuario(int usuarioId) {
+
+	    List<Emprestimo> lista = new ArrayList<>();
+
+	    for (Emprestimo e : emprestimos.values()) {
+	        if (e.getUsuario().getId() == usuarioId) {
+	            lista.add(e);
+	        }
+	    }
+
+	    return lista;
+	}
 
 	public Emprestimo realizarEmprestimo(int usuarioId, int itemId, int diasPrazo) throws Exception {
 

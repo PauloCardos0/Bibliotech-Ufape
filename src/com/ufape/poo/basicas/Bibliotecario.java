@@ -1,6 +1,8 @@
 package com.ufape.poo.basicas;
 
-public class Bibliotecario extends Usuario {
+import java.io.Serializable;
+
+public class Bibliotecario extends Usuario implements Serializable{
 
 	private String matriculaFuncional;
 	private String setor;

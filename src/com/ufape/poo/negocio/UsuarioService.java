@@ -3,19 +3,22 @@ package com.ufape.poo.negocio;
 import java.util.*;
 
 import com.ufape.poo.basicas.*;
+import com.ufape.poo.dados.IRepositorioUsuarios;
 
 public class UsuarioService {
 
 	private Map<Integer, Usuario> usuarios;
+	private IRepositorioUsuarios repositorio;
 
-	public UsuarioService() {
-		this.usuarios = new HashMap<>();
+	public UsuarioService(IRepositorioUsuarios repositorio) throws Exception {
+	    this.repositorio = repositorio;
+	    this.usuarios = repositorio.carregar();
 	}
 
 	// CADASTRO USUARIOS - PAULO CARDOSO
 
 	public void cadastrarAluno(int id, String nome, String email, String telefone, int limiteEmprestimo,
-			String matricula, String curso, int periodo) throws UsuarioJaExisteException {
+			String matricula, String curso, int periodo) throws Exception {
 
 		if (usuarios.containsKey(id)) {
 			throw new UsuarioJaExisteException("Usuario com esse id já existe");
@@ -24,11 +27,12 @@ public class UsuarioService {
 		Usuario aluno = new Aluno(id, nome, email, telefone, limiteEmprestimo, matricula, curso, periodo);
 
 		usuarios.put(id, aluno);
+		repositorio.salvar(usuarios);
 
 	}
 
 	public void cadastrarProfessor(int id, String nome, String email, String telefone, int limiteEmprestimo,
-			String siape, String departamento) throws UsuarioJaExisteException {
+			String siape, String departamento) throws Exception {
 
 		// Pensando bem agora o id do professor pode ser o siape e o de aluno a
 		// matricula, vamos analisar melhor isso
@@ -39,11 +43,12 @@ public class UsuarioService {
 		Usuario professor = new Professor(id, nome, email, telefone, limiteEmprestimo, siape, departamento);
 
 		usuarios.put(id, professor);
+		repositorio.salvar(usuarios);
 
 	}
 
 	public void cadastrarBibliotecario(int id, String nome, String email, String telefone, int limiteEmprestimo,
-			String matriculaFuncional, String setor) throws UsuarioJaExisteException {
+			String matriculaFuncional, String setor) throws Exception {
 
 		if (usuarios.containsKey(id)) {
 			throw new UsuarioJaExisteException("Usuário com esse ID já existe");
@@ -53,6 +58,7 @@ public class UsuarioService {
 				setor);
 
 		usuarios.put(id, bibliotecario);
+		repositorio.salvar(usuarios);
 	}
 
 	// BUSCA USUARIOS - PAULO CARDOSO
